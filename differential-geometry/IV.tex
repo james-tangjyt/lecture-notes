@@ -1,0 +1,541 @@
+\chapter{Infinite Sequences and Series}
+\setcounter{section}{0}
+\section{Infinite Sequences}
+\begin{definition}
+    An \textbf{infinite sequence} of real numbers is a function whose \\
+    domain is $ \mathbb{N} $
+\end{definition}
+
+From the definition one would assume a sequence designated by $a$ would have particular values of 
+    $$a(1), \; a(2), \; a(3), \dots $$
+but instead the subscript notation 
+    $$a_1, \; a_2, \; a_3, \dots$$
+is much more commonly used. \bigskip
+
+A sequence is denoted by a symbol and brackets around it: \{$a_n$\} \\
+So the sequences $\{n\}, \; \{(-1)^n\},$ and $\{\frac{1}{n}\}$ denote the sequences $\alpha, \; \beta,$ and $\gamma$ as such:
+\begin{align*}
+    &\alpha_n = n \\
+    &\beta_n = (-1)^n \\
+    &\gamma_n = \frac{1}{n}
+\end{align*}
+\begin{definition}
+    A sequence \{$a_n$\} \textbf{converges} to $l$ ( $\lim_{n \to \infty} a_n = l$ ) if for every $\epsilon >0$ there is a natural number $N$ such that, for all natural numbers $n$, \\ 
+    if $n > N$. then $| a_n - l| < \epsilon$
+\end{definition} \bigskip
+
+In addition to this terminology A sequence \{$a_n$\} converges to $l$ is sometimes referred to as \{$a_n$\}  \textbf{approaches} $l$ or \{$a_n$\} has the \textbf{limit} $l$ \bigskip
+
+A sequence \{$a_n$\} is said to \textbf{converge} if it converges to some $l$ and \textbf{diverge} if it does not converge to any $l$
+
+\begin{eg}
+    $\{ \gamma_n \} = \frac{1}{n}$ converges to $0$ \\ 
+    This is observed as when $\epsilon > 0$, there always $\exists N\in \mathbb{N}$ such that $\frac{1}{N} < \epsilon$ Then, if $n > N$, we have 
+        $$\gamma_n = \frac{1}{n} < \frac{1}{N} < \epsilon$$
+\end{eg}
+
+\begin{eg}
+    Prove $\lim _{n \to \infty} \sqrt{n+1} - \sqrt{n} = 0$ \\ 
+    One way, we can estimate $\sqrt{n+1} - \sqrt{n}$ using the trick:
+    \begin{align*}
+        \sqrt{n+1} - \sqrt{n} &= \frac{(\sqrt{n+1} - \sqrt{n})(\sqrt{n+1} + \sqrt{n})}{(\sqrt{n+1} + \sqrt{n})} \\
+        &= \frac{n+1-n}{\sqrt{n+1} + \sqrt{n}} \\
+        &= \frac{1}{\sqrt{n+1} + \sqrt{n}}
+    \end{align*}   
+    Another way, we can estimate $\sqrt{n+1} - \sqrt{n}$ by applying MVT to the function $f(x) = \sqrt{x}$ on the interval $[n, \; n+1]$ \\
+    We can obtain:
+    \begin{align*}
+        \frac{\sqrt{n+1} - \sqrt{n}}{1} &= f'(x) \\
+        &= \frac{1}{2\sqrt{x}} \\
+        &< \frac{1}{2\sqrt{n}}
+    \end{align*}
+    Both of these estimates can be used to directly prove the limit
+\end{eg}
+
+\begin{theorem}
+Let $f$ be a function defined in an open interval containing $c$, except perhaps at $c$ itself, with $\lim_{x \to c}f(x) = l$ \\
+Suppose that \{$a_n$\} is a sequence such that 
+\begin{enumerate}
+    \item each $a_n$ is in the domain of $f$
+    \item each $a_n \neq c$
+    \item $\lim_{n\to \infty} a_n = c$
+\end{enumerate}
+Then the sequence \{$f(a_n)$\} satisfies $\lim_{n\to \infty} f(a_n) = l$ \\
+Conversely, if this is true for every sequence \{$a_n$\} satisfying the above conditions, then $\lim_{n\to c} f(x) = l$
+\end{theorem}
+\begin{proof}
+    Suppose first that $\lim_{n\to c} f(x) = l$\\
+    Then from the definition: 
+    $$\forall \epsilon > 0, \exists \delta > 0 \text{ s.t. } \forall x, \text{ if } 0 <|x-c|<\delta \text{ then } |f(x)-l| < \epsilon $$ 
+    If the sequence \{$a_n$\} satisfies $\lim_{n\to \infty} a_n = c$ then we know that: 
+    $$\exists N\in \mathbb{N} \text{ s.t. } \text{ if } n>N \text{ then }|a_n - c| <\delta$$ 
+    and by our choice of $\delta$, this means that:
+        $$|f(a_n) - l| < \epsilon$$
+    Hence, showing that $\lim_{n\to\infty}f(a_n) = l$ \bigskip \\ 
+    Now suppose, conversely, that $\lim_{n\to\infty}f(a_n) = l$ for every sequence 
+    \{$a_n$\} with $\lim_{n\to \infty}a_n = c$ \smallskip \\
+    If $\lim_{n\to c} f(x) = l$ were not true, then:
+    $$ \exists \epsilon > 0 \text{ s.t. } \forall \delta > 0, \; \exists x \text{ with } 0 < |x - c| < \delta \text{ but } |f(x) - l| > \epsilon $$
+    In particular, for each $n$, there would be a number $x_n$ such that 
+    $$  0 < |x_n - c| < \frac{1}{n} \text{ but } |f(x_n) - l| > \epsilon $$
+    Now the sequence \{$x_n$\} clearly converges to $c$ but since $|f(x_n) - l| > \epsilon$ for all $n$, the sequence \{$f(x_n)$\} does not converge to $l$. \\
+    This contradicts the hypothesis, so $lim_{x\to c}f(x) = l$ must be true
+\end{proof}\bigskip
+
+\begin{eg}
+    If \{$a_n$\} and \{$b_n$\} are defined by
+    
+    \begin{align*}
+        a_n &= \sin \left( 13 + \frac{1}{n^2} \right) \\
+        b_n &= \cos \left( \sin \left( 1 + (-1)^n \cdot \frac{1}{n} \right) \right)
+    \end{align*}
+    Then  \{$a_n$\} clearly converges to $\sin (13)$ and \{$b_n$\} converges to $\cos(\sin(1))$
+\end{eg} \bigskip
+
+Not all sequences converge to an $l$ as obvious as the ones in the above example. To determine this a criterion stated in terms of functions, hence applying to sequences are used: 
+
+A sequence \{$a_n$\} is \textbf{increasing} if $a_{n+1} > a_n$ for all $n$, \textbf{non-decreasing} if $a_{n+1} \geq a_n$ for all $n$, and \textbf{bounded above} if there is a number $M$ such that $a_n \leq M$ for all $n$. And the same definitions for sequences that are decreasing, non-increasing, and bounded below
+
+\begin{theorem}
+    If \{$a_n$\} is non-decreasing, and bounded above, then \{$a_n$\} \\ 
+    converges. (Also true if \{$a_n$\} is non-increasing and bounded below)
+\end{theorem}
+\begin{proof}
+    The set $A$ consisting of all numbers $a_n$ is, by assumption, bounded above, so $A$ has a least upper bound, $\alpha$ \\
+    We claim that $\lim_{n \to \infty}a_n = \alpha$ \\
+    In fact, if $\epsilon > 0 $, there is some $a_N$ satisfying $\alpha - a_N$ since $\alpha$ is the least upper bound of $A$ \\
+    Then if $n > N$ we have:
+    $$ a_n \geq a_N, \text{ so  } \alpha - a_n \leq \alpha - a_N < \epsilon $$
+    This proves that $\lim_{n\to \infty} a_n = \alpha$
+\end{proof} \bigskip
+
+The hypothesis that \{$a_n$\} is bounded is clearly essential to Theorem 2. If \{$a_n$\} is not bounded above (whether or not \{$a_n$\}  is non-decreasing) \{$a_n$\}  diverges. \bigskip
+
+\begin{definition}
+    A \textbf{subsequence} of any given sequence \{$a_n$\} is a sequence of the form:
+    $$ a_{n_1}, \; a_{n_2}, \; a_{n_3}, \dots $$
+    where the $n_j$ are natural numbers s.t.
+    $$n_1 < n_2 < n_3 < \dots$$
+\end{definition}
+
+\begin{lemma}
+    Any sequence \{$a_n$\} contains a subsequence which is either non-decreasing or non-increasing
+\end{lemma}
+\begin{proof}
+    We can call a natural number $n$ a "peak point" of the sequence \{$a_n$\} if $a_m < a_n$ for all $m > n$ \bigskip
+    
+    Case 1: \textit{The sequence \{$a_n$\} has infinitely many peak points} \\
+    In this case, if $n_1 < n_2 < n_3 < \dots $ are the peak points, then \\ $a_{n_1} > a_{n_2} > a_{n_3} > \dots$ so \{$a_{n_k}$\} is the desired non-increasing subsequence \bigskip 
+
+    Case 2: \textit{The sequence has only finitely many peak points} \\
+    In this case, let $n_1$ be greater than all peak points. Since $n_1$ is not a peak point, there is some $n_2 > n_1$ such that $a_{n_2} \geq a_{n_1}$. Now since $n_2$ is not a peak point as it is greater than $n_1$ hence greater than all peak points, then there exists some $n_3$ such that $a_{n_3} \geq a_{n_2}$. This logic can be continued obtaining a non-decreasing subsequence
+\end{proof}
+
+\begin{corollary}
+    (\textbf{Bolzano - Weierstrass Theorem}) Every bounded sequence has a convergent subsequence
+\end{corollary}
+\begin{proof}
+    The proof comes from the lemma above.
+\end{proof} \bigskip
+
+If a sequence converges, ie the individual terms are eventually all close to the same number, then the difference of any two such individual terms should be very small. To be precise, if $\lim_{n\to \infty}a_n = l$ for   some $l$, then for any $\epsilon>0$ there is an $N$ such that $|a_n - l| < \frac{\epsilon}{2}$ for $n > N$; now if both $n > N$ and $m < N$, then
+$$|a_n-a_m| \leq |a_n-l|+|l-a_m| < \frac{\epsilon}{2} + \frac{\epsilon}{2} = \epsilon$$
+The final inequality, $|a_n-a_m| < \epsilon$, eliminates the referral to a limit to $l$. This is known as the \textbf{Cauchy Condition}, necessary for the convergence of a sequence 
+
+\begin{definition}
+    A sequence \{$a_n$\} is a \textbf{Cauchy Sequence} if 
+    $$ \forall \epsilon > 0, \; \exists N \in \N \text{ s.t. } \forall m, \; n \text{ if } m, \; n > N, \text{ then } |a_n - a_m| < \epsilon$$
+    This is usually written as:
+    $$\lim_{m, \; n \to \infty} |a_m - a_n| = 0$$
+ \end{definition}
+\begin{theorem}
+    A sequence \{$a_n$\} converges if and only if it is a Cauchy Sequence
+\end{theorem}
+\begin{proof}
+    We have already shown that \{$a_n$\} is a Cauchy sequence if it converges. \\
+    To prove the assertion, we show that every sequence \{$a_n$\} is bounded.\\
+    Take $\epsilon = 1$ in the definition of a Cauchy sequence. We find 
+    $$ \exists N \text{ s.t. } |a_m - a_n| < 1 \indent \forall m, \; n > N$$
+    In particular, this means
+    $$ |a_m - a_{N+1}| <1 \indent \forall m > N$$
+    Thus, \{ $a_m \; : \; m>N$\} is bounded and as there is only as finite amount of other $a_i$'s, the whole sequence is bounded. \\
+    By Bolzano - Weierstrass Theorem, some subsequence of \{$a_n$\} converges.
+    And if a subsequence of a Cauchy sequence converges, then the Cauchy sequence itself converges.
+\end{proof}
+\newpage
+
+\section{Infinite Series}
+\begin{definition}
+    The sequence \{$a_n$\} is \textbf{summable} if the sequence \{$s_n$\} converges, where:
+    $$s_n = a_1 + \dots + a_n $$
+    In this case, $ \lim_{n \to \infty}s_n $ is denoted by:
+    $$\sum _{n = 1} ^{\infty}a_n$$
+    or less formally by $a_1 + a_2 + a_3 + \dots$
+    and is called the \textbf{sum} of the sequence \{$a_n$\}
+\end{definition} \bigskip
+
+Elementary arithmetical operations on infinite series are direct consequences of the definition. We can show that if \{$a_n$\} and \{$b_n$\} are both summable, then
+\begin{align*}
+   \sum _{n = 1} ^ \infty ( a_n + b_n) &= \sum _{n = 1} ^ \infty a_n + \sum _{n = 1} ^ \infty b_n \\
+\sum _{n = 1} ^ \infty c \cdot a_n &= c \cdot \sum _{n = 1} ^ \infty a_n 
+\end{align*}
+
+\begin{lemma}
+    (\textbf{The Cauchy Criterion}) The sequence \{$a_n$\} is summable if and only if 
+    $$\lim_{m,n\to \infty} a_{n+1} + \dots + a_m = 0$$ 
+\end{lemma}
+\begin{proof}
+    The sequence \{$a_n$\} is summable if and only if \{$s_n$\} converges implying \{$s_n$\} is a Cauchy Sequence or:
+    $$\lim_{m,n \to \infty} s_m - s_n = 0$$
+    And this can be rephrased to give the limit above.
+\end{proof}
+
+\begin{lemma}
+    (\textbf{The Vanishing Condition}) If \{$a_n$\} is summable, then $$\lim_{n\to\infty}a_n = 0$$
+\end{lemma}
+\newpage
+\begin{proof}
+    This comes from the Cauchy Criterion as by taking $m= n+1$ \\
+    Or it can be proven directly: \\ 
+    If $\lim_{n \to \infty} s_n = l$, then 
+        $$\lim_{n\to \infty} a_n = \lim_{n \to \infty} (s_n- s_{n-1}) = \lim_{n\to \infty} s_n - \lim _{n \to \infty} s_{n-1} = l-l =0$$
+\end{proof} \bigskip
+
+However, the Vanishing Condition is far from sufficient to determine whether or not a sequence is summable. For example, 
+$$\lim_{n \to \infty}\frac{1}{n}=0 $$
+but the sequence \{$\frac{1}{n}$\}  is not summable; in fact it is not even bounded.
+
+One of the most important infinite series are the \textit{geometric series} 
+$$\sum_{n=0}^\infty r^n = 1 + r + r^2 + r^3 + \dots$$
+For the discussion below, we only consider cases of when  $|r| < 1$ as they are more interesting. These series can be managed because the partial sums 
+$$s_n = 1 + r + \dots + r^n$$
+can be evaluated in simple terms. The two equations:
+\begin{align*}
+    s_n &= 1 + r + r^2 + \dots + r^n \\
+    rs_n &= r + r^2 + \dots + r^n + r^{n+1}
+\end{align*}
+would lead to:
+$$ s_n(1-r)=1-r^{n+1}$$
+or more simply:
+$$s_n = \frac{1-r^{n+1}}{1-r}$$
+(this division is valid as we do not consider when $r=1$)\\
+Now we know that $\lim _{n \to \infty}r^n = 0$, since $|r|<1$, it follows that 
+$$\sum_{n=0}^\infty r^n = \lim_{n \to \infty} \frac{1-r^{n+1}}{1-r} = \frac{1}{1-r}, \indent |r| < 1$$
+In particular, when $r = \frac{1}{2}$
+$$\sum_{n=1}^\infty \left(\frac{1}{2} \right)^n = \sum_{n=0}^\infty \left(\frac{1}{2} \right)^n - 1 = \frac{1}{1-\frac{1}{2}} - 1 =1$$
+That is,
+$$\frac{1}{2} + \frac{1}{4} + \frac{1}{8} + \frac{1}{16} + \dots = 1$$
+\begin{definition}
+    A sequence \{$a_n$\} is called \textbf{non-negative} if each $a_n \geq 0$
+\end{definition}
+For the following we shall only consider non-negative sequences. If \{$a_n$\} is non-negative, then \{$s_n$\} is clearly non-decreasing. With this (and the fact that non-decreasing sequences that are bounded above converges), we  have:
+\begin{lemma}
+    (\textbf{The Boundedness Criterion}) A non-negative sequence \{$a_n$\} is summable if and only if the set of partial sums \{$s_n$\} is bounded
+\end{lemma}
+
+\begin{theorem}
+    \textbf{The Comparison Test} \\
+    Suppose that:
+    $$0 \leq a_n \leq b_n \indent \forall n$$
+    Then if $\sum _{n=1}^ \infty b_n$ converges, the so does $\sum_{n = 1}^ \infty a_n$
+\end{theorem}
+\begin{proof}
+    If 
+    $$s_n = a_1 + \dots + a_n$$
+    $$t_n = b_1 + \dots + b_n$$
+    Then 
+    $$0 \leq s-N \leq t_n \indent \forall n$$
+    Now \{$t_n$\} is bounded, since $\sum_n=1 ^\infty b_n$ converges. Therefore \{$s_n$\} is bounded; consequently, by the boundedness criterion $\sum_{n=1}^ \infty a_n$ converges
+\end{proof} \bigskip
+
+Most commonly, the comparison test is used to analyze very complicated looking series in which most of the complication is irrelevant
+
+\begin{eg}
+    The series
+    $$\sum_{n=1}^\infty \frac{2 + \sin^3(n+1)}{2^n + n^2}$$
+    converges because 
+    $$0 \leq \frac{2 + \sin^3(n+1)}{2^n + n^2} < \frac{3}{2^n}$$
+    and 
+    $$\sum_{n=1}^\infty \frac{3}{2^n} = 3 \cdot \sum_{n=1}^\infty \frac{1}{2^n}$$
+    And we know $\sum_{n=1}^\infty \frac{1}{2^n}$ is a convergent series (it is a geometric series)
+\end{eg}
+
+\begin{theorem}
+    \textbf{The Limit Comparison Test}\\
+    If 
+    $$a_n, \; b_n > 0 \text{ and } \lim_{n \to \infty}\frac{a_n}{b_n} = c \neq 0$$
+    Then $\sum _{n=1}^ \infty a_n$ converges, if and only if $\sum_{n = 1}^ \infty b_n$ converges
+\end{theorem}
+\begin{proof}
+    Suppose $\sum_{n = 1}^ \infty b_n$ converges. \\
+    Since $\lim_{n \to \infty}\frac{a_n}{b_n} = c$, there is some $N$ such that 
+    $$a_n \leq 2cb_n \indent \text{for } n\geq N$$
+    But the sequence $2c\sum_{n=N}^\infty b_n$ certainly converges.\\
+    The comparison test shoes that $\sum _{n=N}^ \infty a_n$ converges, and this implies the convergence of the whole series $\sum _{n=1}^ \infty a_n$, which has only finitely many additional terms.\\
+    The converse follows immediately, since we also have
+    $$\lim_{n\to \infty} \frac{b_n}{a_n}=\frac{1}{c}\neq 0$$
+\end{proof}
+
+\begin{theorem}
+    \textbf{The Ratio Test} \\
+    Let $a_n > 0$ for all $n$, and suppose that 
+    $$ \lim _{n \to \infty} \frac{a_{n+1}}{a_n} = r$$
+    Then $\sum_{n=1}^\infty a_n$ converges if $r < 1$ .\\
+    If $r>1$, that means the terms $a_n$ are unbounded so $\sum_{n=1}^\infty a_n$ diverges
+\end{theorem}
+\begin{proof}
+    Suppose $r<1$. Choose any number $s$ with $r<s<1$. Then the hypothesis:
+    $$\lim_{n\to \infty} \frac{a_{n+1}}{a_n} = r < 1$$
+    implies that there is some $N$ such that:
+    $$\frac{a_{n+1}}{a_n} \leq s \indent \text{for } n \geq N$$
+    This can be written as
+    $$a_{n+1} \leq s \cdot a_n \indent \text{for } n \geq N$$
+    Thus:
+    \begin{align*}
+        a_{N+1} &\leq s \cdot a_N \\
+        a_{N+2} &\leq s \cdot a_{N+1} \leq s^2 \cdot a_N \\
+                & \; \; \vdots \\
+        a_{N+k} &\leq s^k \cdot a_N
+    \end{align*}
+    Since $\sum_{k=0}^\infty a_N \cdot s^k = a_N \cdot  \sum_{k=0}^\infty s^k$ converges. The comparison test shows 
+    $$\sum_{k=0}^\infty a_n = \sum_{k=0}^\infty a_{N+k}$$
+    converges. This implies the convergence of the whole series $\sum_{k=0}^\infty a_n$ \\
+    For the case $r>1$. If $1<s<r$, then there is a number $N$ such that 
+    $$\frac{a_{n+1}}{a_n} \geq s \indent \text{for } n\geq N$$
+    which means that 
+    $$a_{N+k} \geq a_N \cdot s^k \indent k = 0,\;, 1, \dots$$
+    ie the terms are unbounded
+\end{proof} \bigskip
+
+\begin{eg}
+    Consider the series $\sum_{n=1}^\infty \frac{1}{n!}$ \\
+    Letting $a_n = \frac{1}{n!}$ we obtain:
+    $$\frac{a_{n+1}}{a_n} = \frac{\frac{1}{(n+1)!}}{\frac{1}{n!}} = \frac{n!}{(n+1)!} = \frac{1}{n+1}$$
+    Thus,
+    $$\lim_{n\to \infty} \frac{a_{n+1}}{a_n} = 0 < 1$$
+    ie $\sum_{n=1}^\infty \frac{1}{n!}$ converges
+\end{eg} \bigskip
+
+\begin{eg}
+    Consider the series $\sum_{n=1}^\infty \frac{r^n}{n!}$ where $r$ is a fixed positive number \\
+    Letting $a_n = \frac{r^n}{n!}$ 
+    $$\frac{a_{n+1}}{a_n} = \frac{\frac{r^{n+1}}{(n+1)!}}{\frac{r^n}{n!}} = = \frac{r}{n+1}$$
+    Thus,
+    $$\lim_{n\to \infty} \frac{a_{n+1}}{a_n} = 0 < 1$$
+    So $\sum_{n=1}^\infty \frac{r^n}{n!}$ converges. It follows that 
+    $$\lim_{n\to \infty}\frac{r^n}{n!} = 0$$
+\end{eg} \bigskip
+
+\begin{eg}
+    Consider the series $\sum_{n=1}^\infty n \cdot r^n$ \\
+    We have 
+    $$ \lim _{n\to \infty}\frac{(n+1)\cdot r^{n+1}}{n\cdot r^n} = \lim_{n\to \infty} r \cdot \frac{n+1}{n}=r$$
+    Since $\lim_{n\to \infty} \frac{n+1}{n} = 1$\\
+    This proves $\sum_{n=1}^\infty n \cdot r^n$ converges if $0 \leq r < 1$ and diverges when $r > 1$
+\end{eg} \bigskip
+
+\begin{remark}
+    The issue with the ratio test is when
+    $$\lim_{n \to \infty} \frac{a_{n+1}}{a_n}= 1$$
+    as when this happens, \{$a_n$\} may or may not be summable \\
+    The series $\sum_{n=1}^\infty \left( \frac{1}{n}\right)^2$ converges even though:
+    $$\lim _{n\to \infty}\frac{\left(\frac{1}{n+1}\right)^2}{\left(\frac{1}{n}\right)^2}=1$$
+    While the series $ \sum_{n=1}^\infty \frac{1}{n}$ diverges and 
+    $$\lim_{n\to \infty} \frac{\frac{1}{n+1}}{\frac{1}{n}} = 1$$
+\end{remark}
+\begin{theorem}
+    \textbf{The Integral Test} \\
+    Suppose that $f$ is positive and decreasing on $[1,\; \infty]$ and that $f(n) = a_n$ for all $n$. Then $\sum_{n=1}^\infty a_n$ converges if and only if the limit
+    $$\int _1 ^ \infty f = \lim_{A\to \infty} \int _1 ^A f$$
+    exists
+\end{theorem}
+\begin{proof}
+    The existence of $\lim_{A \to \infty} \int _1^Af$  is equivalent to the convergence of the series
+    $$\int_1^2f+\int_2^3f+\int_3^4f + \dots$$
+    Now, since $f$ is decreasing, we have 
+    $$f(n+1) < \int _n^{n+1} f <f(n)$$
+    The first half of this double inequality shows that the series $\sum_{n=1}^\infty a_{n+1}$ may be compared to the series $\sum_{n=1}^\infty \int_n^{n+1}f$, proving that $\sum_{n=1}^\infty a_{n+1}$ (and hence $\sum_{n=1}^\infty a_n$) converges if $\lim_{n\to \infty}\int_1^A$ exists\\
+    The second half of the inequality shows that the series $\sum_{n=1}^\infty \int_n^{n+1} f$ may be compared to the series $\sum_{n=1}^\infty a_n$, proving that $\lim_{A\to\infty}\int_1^Af$ must exist if $\sum_{n=1}^\infty a_n$ converges
+\end{proof} \bigskip
+
+\begin{eg}
+    If $p>0$, the convergence of $\sum_{n=1}^\infty\frac{1}{n^p}$ is equivalent, by the integral test, to the existence of 
+    $$\int_1^\infty \frac{1}{x^p}$$ \newpage
+    Now:
+    $$ \int_1^A \frac{1}{x^p}dx = 
+    \begin{dcases}
+        -\frac{1}{(p-1}\cdot \frac{1}{A^p-1}+\frac{1}{p-1} & p \neq 1 \\
+        \log A & p =1
+    \end{dcases} $$
+    Showing that $lim_{A\to\infty} \int_1^A \frac{1}{x^p}dx$ exists if $p>1$, and does not exist when $p\leq 1$. Thus $\sum_{n=1}^\infty\frac{1}{n^p}$ converges for $p>1$ \\
+    Particularly, $\sum_{n=1}^\infty\frac{1}{n}$ diverges
+\end{eg}
+
+\begin{definition}
+    The series $\sum_{n=1}^\infty a_n$ is \textbf{absolutely convergent} if the series $\sum_{n=1}^\infty |a_n|$ is convergent\\
+    More formally, the sequence \{$a_n$\} is \textbf{absolutely summable} is the sequence \{$|a_n|$\} is summable
+\end{definition}
+\begin{theorem}
+    Every absolutely convergent series is convergent. Moreover, a series is absolutely convergent if and only if the series formed from its positive terms and the series formed from its negative terms both converge
+\end{theorem}
+\begin{proof}
+    If $\sum_{n=1}^\infty |a_n|$ converges, then by the Cauchy criterion
+    $$\lim_{m,n\to\infty}|a_n+1|+ \dots + |a_m| =0 $$
+    Since,
+    $$|a_{n+1} + \dots + a_m| \leq |a_{n+1}| + \dots + |a_m|$$
+    it follows that 
+    $$\lim_{m,n\to\infty}a_n+1+ \dots + a_m =0 $$
+    which shoes that $\sum_{n=1}^\infty a_n$
+    To prove the second part of the theorem, let 
+    $$a_n^+ = 
+    \begin{dcases}
+        a_n & a_n \geq 0 \\
+        0 & a_n \leq 0
+    \end{dcases}$$
+    $$a_n^- = 
+    \begin{dcases}
+        a_n & a_n \leq0 \\
+        0 & a_n \geq 0
+    \end{dcases}$$
+    so that $\sum_{n=1}^\infty a_n^+$ is the series formed from the positive terms of $\sum_{n=1}^\infty a_n$, and $\sum_{n=1}^\infty a_n^-$ is the series formed from the negative terms.
+    If $\sum_{n=1}^\infty a_n^+$ and $\sum_{n=1}^\infty a_n^-$ both converge, then
+    $$\sum_{n=1}^\infty |a_n| = \sum_{n=1}^\infty (a_n^+ - a_n^-) = \sum_{n=1}^\infty a_n^+ - \sum_{n=1}^\infty a_n^-$$
+    also converges, so $\sum_{n=1}^\infty a_n$ converges absolutely \newpage
+    On the other hand, if $\sum_{n=1}^\infty |a_n|$ converges, then, as we have shown, $\sum_{n=1}^\infty a_n$ also converges. Therefore:
+    $$ \sum_{n=1}^\infty a_n^+ = \frac{1}{2}\left( \sum_{n=1}^\infty a_n + \sum_{n=1}^\infty |a_n| \right)$$
+    and 
+    $$\sum_{n=1}^\infty a_n^- = \frac{1}{2} \left( \sum_{n=1}^\infty a_n - \sum_{n=1}^\infty|a_n| \right)$$
+    both converge
+\end{proof} \bigskip
+
+\begin{theorem}
+    \textbf{Leibniz's Theorem} \\
+    Suppose that 
+    $$a_1 \geq a_2 \geq a_3 \geq \dots \geq 0$$
+    and that 
+    $$\lim_{n\to \infty} a_n =0$$
+    Then the series 
+    $$\sum_{n=1}^\infty (-1)^{n+1} \cdot a_n = a_1 - a_2 + a_3 - a_4 + a_5 - \dots $$
+    converges
+\end{theorem}
+
+\begin{theorem}
+    If $\sum_{n=1}^\infty a_n$ converges, but does not converge absolutely, then for any number $\alpha$, there is a rearrangement \{$b_n$\} of \{$a_n$\} such that $\sum_{n=1}^\infty b_n = \alpha$
+\end{theorem}
+\begin{theorem}
+    if $\sum_{n=1}^\infty a_n$ converges absolutely, and \{$b_n$\} is any rearrangement of \{$a_n$\}, then $\sum_{n=1}^\infty b_n$ also converges (absolutely), and 
+    $$\sum_{n=1}^\infty a_n = \sum_{n=1}^\infty b_n$$
+\end{theorem}
+\begin{theorem}
+    If $\sum_{n=1}^\infty a_n$ and $\sum_{n=1}^\infty b_n$ converge absolutely, and \{$c_n$\} is any sequence containing the products $a_ib_j$ for each pair $(i,\; j)$, then 
+    $$\sum_{n=1}^\infty c_n = \sum_{n=1}^\infty a_n \cdot \sum_{n=1}^\infty b_n$$
+\end{theorem} \newpage
+
+\section{Uniform Convergence and Power Series}
+For this section, we are interested in functions defined by equations of the form 
+$$f(x) = f_1(x) + f_2(x) + \dots $$
+\begin{eg}
+    $$e^x = 1 + \frac{x}{1!} + \frac{x^2}{2!}+\frac{x^3}{3!} + \dots$$
+\end{eg} 
+In such a situation we denote \{$f_n$\} as some sequence of functions and for each $x$, we can obtain a sequence of number \{$f_n(x)$\} and $f(x)$ is the sum of this sequence \bigskip
+
+We can define a new sequence of functions \{$s_n$\} by 
+$$s_n = f_1 + \dots + f_n$$
+then  we can have
+$$f(x) = \lim _{n\to \infty} s_n(x)$$ \bigskip
+
+However, nothing that we intuitively hope is true, is actually true. We have such collection of counterexamples as such:
+\begin{ceg}
+    If each $f_n$ is continuous, the function $f$ may not be.\\
+    Observe the function:
+    $$f_n(x) =
+    \begin{dcases}
+        x^n & 0 \leq x \leq 1 \\
+        1  & x \geq 1
+    \end{dcases}$$
+    These functions are all continuous, but the function 
+    $$f(x) = \lim_{n\to\infty}f_n(x)$$
+    is not
+\end{ceg} \bigskip
+
+\begin{ceg}
+    It is possible to produce a sequence of differentiable functions
+    \{$f_n$\} for which the function $f(x) =\lim_{n\to\infty}f_n(x)$ is not
+    $$f_n(x) =
+    \begin{dcases}
+        -1 & x \leq -\frac{1}{n} \\
+        \sin\left( \frac{n \pi x}{2} \right) & -\frac{1}{n} \leq x \leq \frac{1}{n} \\
+        1  & \frac{1}{n}\leq x
+    \end{dcases}$$
+    All these functions are differentiable but, 
+    $$\lim_{n\to\infty} f_n(x) =
+    \begin{dcases}
+        -1 & x<0 \\
+        0 & x=0 \\
+        1  & x > 0 
+    \end{dcases}$$
+\end{ceg} \bigskip
+
+\begin{definition}
+    Let \{$f_n$\} be a sequence of functions defined on $A$, and let $f$ be a function which is also defined on $A$. Then $f$ is called the \textbf{uniform limit of} \{$f_n$\} \textbf{on} $A$ if for every $\epsilon>0$ there is some $N$ such that $\forall x \in A$,
+    $$\text{if } n > N, \text{ then } |f(x) -f_n(x)| < \epsilon$$
+    We also say \{$f_n$\} \textbf{converges uniformly to} $f$ \textbf{on} $A$ or that $f_n$ \textbf{approaches} $f$ \textbf{uniformly on} $A$
+\end{definition}
+\begin{definition}
+    As a continuation to the definition above, if we only know that
+    $$f(x) = \lim_{n\to\infty}f_n(x) \indent \forall x\in A$$
+    then we say that \{$f_n$\} \textbf{converges pointwise to} $f$ \textbf{on} $A$
+\end{definition}
+
+\begin{theorem}
+    Suppose that \{$f_n$\} is a sequence of functions which are integrable on $[a,\;b]$, and that \{$f_n$\} converges uniformly on $[a,\;b]$ to a function $f$ which is integrable on $[a,\; b]$, then:
+    $$\int_a^b f = \lim_{n\to\infty}\int_a^bf_n$$
+\end{theorem}
+\begin{proof}
+    Let $\epsilon > 0$. There is some $N$ such that for all $n>N$, we have 
+    $$|f(x)-f_n(x)|<\epsilon \indent \forall x \in [a,\;b]$$
+    Thus, if $n>N$ we have
+    \begin{align*}
+      \left|\int_a^bf(x)\;dx - \int _a^b f_n(x)\;dx \right| &= \left|\int_a^b [f(x) - f_n(x)]\;dx  \right|  \\
+      &\leq \int _a^b |f(x) - f_n(x)| \; dx \\
+      &\leq \int_a^b \epsilon\; dx \\
+      &= \epsilon(b-a)
+    \end{align*}
+    Since this is true for any $\epsilon > 0$, it follows that 
+    $$\int_a^b f = \lim_{n\to\infty}\int_a^bf_n$$
+\end{proof}
+\begin{theorem}
+    Suppose that \{$f_n$\} is a sequence of functions which are continuous on $[a,\;b]$, and \{$f_n$\} converges uniformly on $[a,\;b]$ to $f$. Then $f$ is also continuous on $[a,\;b]$
+\end{theorem}
+\begin{proof}
+    For each $x \in [a,\;b]$, we must prove that $f$ is continuous at $x$. We will deal only with $x \in (a,\; b)$, and deal with $x=a$ and $x=b$ later with modifications. \\
+    Let $\epsilon > 0$. Since \{$f_n$\} converges uniformly to $f$ on $[a,\;b]$, there is some $n$ such that
+    $$|f(y)-f_n(y)|<\frac{\epsilon}{3} \indent \forall y\in[a,\;b]$$
+    In particular, $\forall h$ such that $x+h \in [a,\;b]$, we have
+    \begin{enumerate}
+        \item $|f(x)-f_n(x)| < \frac{\epsilon}{3}$ 
+        \item $|f(x+h) - f_n(x+h)| < \frac{\epsilon}{3}$
+    \end{enumerate}
+    Now $f_n$ is continuous, so there is some $\delta > 0$ such that for $|h|<\delta$ we have 
+    \begin{enumerate}
+        \setcounter{enumi}{2}
+        \item $|f_n(x)-f_n(x+h)| < \frac{\epsilon}{3}$
+    \end{enumerate}
+    Thus, if $|h| < \delta$, then 
+    \begin{align*}
+        & |f(x+h) - f(x)| \\
+        & = |f(x+h)-f_n(x+h)+f_n(x+h)-f(x)+f_n(x)-f(x)| \\
+        &\leq |f(x+h)-f_n(x+h)|+|f_n(x+h)-f_n(x)| + |f_n(x)-f(x)| \\
+        &< \frac{\epsilon}{3} + \frac{\epsilon}{3}+\frac{\epsilon}{3} \\
+        &= \epsilon
+    \end{align*}
+    So $f$ is continuous at $x$
+\end{proof}
+
+\begin{theorem}
+    Suppose that \{$f_n$\} is a sequence of functions which are differentiable on $[a,b]$, with integrable derivatives $f_n'$, and that \{$f_n$\} converges (pointwise) to $f$. Suppose that \{$f_n'$\} converges uniformly on $[a,b]$ to some continuous function $g$. Then $f$ is differentiable and: 
+    $$f'(x) = \lim_{n\to \infty}f_n'(x)$$
+\end{theorem}
+\begin{proof}
+    Applying Theorem
+\end{proof}
